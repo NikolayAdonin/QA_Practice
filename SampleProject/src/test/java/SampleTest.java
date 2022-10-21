@@ -10,11 +10,13 @@ import org.openqa.selenium.chrome.ChromeDriver;
 public class SampleTest {
     protected static WebDriver driver;
     private Logger logger = LogManager.getLogger(SampleTest.class);
+    String env = System.getProperty("browser","chrome");
 
     @BeforeEach
     public void setUp(){
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
+        driver = WebDriverFactory.getDriver(env.toLowerCase());
         logger.info("Драйвер стартовал.");
     }
 
